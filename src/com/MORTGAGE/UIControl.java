@@ -7,6 +7,11 @@ public class UIControl {
     */
     private boolean isEnabled = true;
 
+    public UIControl(boolean isEnabled) {
+        this.isEnabled = isEnabled;
+        System.out.println("UIControl");
+    }
+
 
     // what behaviors do we want to define here? the ability to enable or disable each UI CONTROL.
     public void enable() {

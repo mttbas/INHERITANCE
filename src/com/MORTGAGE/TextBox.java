@@ -17,6 +17,13 @@ public class TextBox extends UIControl {
      */
     private String text = "";
 
+    public TextBox(boolean isEnabled, String text) {
+        super(isEnabled); // super() keyword to call the constructor of our base class;
+        // must be first statement here. if not we get error.
+        this.text = text;
+        System.out.println("TextBox");
+    }
+
 
     // and 2 methods
     public void setText(String text){
