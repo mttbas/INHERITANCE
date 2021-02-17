@@ -24,6 +24,12 @@ public class TextBox extends UIControl {
         System.out.println("TextBox");
     }
 
+    @Override    // this is an ANNOTATION= a label we attach to a class member. and with this we give
+                 // extra info to JAVA COMPILER: we are overriding toString() in object class
+    public String toString(){
+        return text;
+    }
+
 
     // and 2 methods
     public void setText(String text){
