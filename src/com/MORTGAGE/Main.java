@@ -11,35 +11,26 @@ public class Main {
         var control = new UIControl(true);
         var textBox = new TextBox(true, "any textBox object is a control object and is an Object so it inherits all the members in UIControl class & Object class");
         show(textBox);
-        /*
-       * what if instead of control object we pass a textBox object to our show method?
-       * instead of show(control); I write show(textBox);  that is valid because:
-       * every textBox object IS A control OBJECT as well.
-       * this is UPCASTING. this textBox object automatically gets cast UIControl/ its PARENT
-       *
-       * in fact the show method is written for control objects but because
-       * TextBox class extends UIControl & inherits all the features, and
-       * any textBox object IS A control object.
-       * the show method and the statements are valid for textBox objects
-       * to see what happens run the code with show(control); & show(textBox);
-       *
-       *
-       * any class directly or indirectly extends Object class & inherits all the features. so
-       * any textBox object IS AN Object
-       * any control object IS AN Object
-       * so if in show method instead of UIControl type I use Object and run it, it is also valid
-       * pls try it with
-       * public static void show(Object control)
-       * public static void show(UIControl control)
-         */
-
     }
 
-    // I define a method called show & give it a parameter of the type UIControl;
-    // in this method we want only to print this object on the CONSOLE
-    // but only main method will be compiled and we need to use this method then in MAIN METHOD
     public static void show(Object control){
+        var textBox = (TextBox)control;
+        ((TextBox) control).setText("now we access text box methods");
         System.out.println(control);
         System.out.println(control.toString()); // these are equal
     }
+    /*
+    * interesting PART: even though at runtime we are passing a textBox object: show(textBox);
+    * at compile time, when we are coding show method, we do not have access to any of the methods
+    * in our TextBox. so if we TYPE control. ---- you only see the members of the control class
+    *
+    * now WHAT IF WE WANNA WORK with one of the methods in TextBox CLASS?
+    * WE NEED TO explicitly CAST THIS CONTROL TO TEXTBOX .... how?
+    * var textBox = (TextBox)control; this is DOWN CASTING.
+    * base / parent UIControl class can access child methods.
+    * now we have access to text box methods. type: control.-- you see setText and clear methods as well
+    * we set the text and run it, the answer is:
+    * now we access text box methods
+    * now we access text box methods
+     */
 }
