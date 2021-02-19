@@ -10,27 +10,38 @@ public class Main {
 
         var control = new UIControl(true);
         var textBox = new TextBox(true, "any textBox object is a control object and is an Object so it inherits all the members in UIControl class & Object class");
-        show(textBox);
+        show(control);
     }
 
-    public static void show(Object control){
-        var textBox = (TextBox)control;
-        ((TextBox) control).setText("now we access text box methods");
+    /*
+    * there is one problem after down casting the control object.
+    * if above instead of show(textBox); we use show(control); and run it,
+    * we get classcastexception:
+    * class com.MORTGAGE.UIControl cannot be cast to class com.MORTGAGE.TextBox
+    * REASON: every text box is a CONTROL OBJECT
+    * but not every control object is necessarily a textBOX object, it could be
+    * a dropdown list or a check box. so that is why we get an error here.
+    * in fact when we give show control object:  show(control); which is more generic and we are
+    * trying to CAST it to a more specialized type: like textBox, java can not do this.
+    * HOW CAN WE PREVENT IT HAPPENING?
+    * before this casting we need to make sure that the object that
+    * is passed here at runtime : public static void show(UIControl control)
+    * is an instance of TextBox class, then we can safely CAST IT as textBox
+    * we type:
+    * if ( control instanceof TextBox){
+            var textBox = (TextBox)control;
+            ((TextBox) control).setText("now we access text box methods");
+        }
+    * look down. run the code. this time we get no error.
+    * run with show(textBox); and show(control); to see difference.
+     */
+
+    public static void show(UIControl control){
+        if ( control instanceof TextBox){
+            var textBox = (TextBox)control;
+            ((TextBox) control).setText("now we access text box methods");
+        }
         System.out.println(control);
         System.out.println(control.toString()); // these are equal
     }
-    /*
-    * interesting PART: even though at runtime we are passing a textBox object: show(textBox);
-    * at compile time, when we are coding show method, we do not have access to any of the methods
-    * in our TextBox. so if we TYPE control. ---- you only see the members of the control class
-    *
-    * now WHAT IF WE WANNA WORK with one of the methods in TextBox CLASS?
-    * WE NEED TO explicitly CAST THIS CONTROL TO TEXTBOX .... how?
-    * var textBox = (TextBox)control; this is DOWN CASTING.
-    * base / parent UIControl class can access child methods.
-    * now we have access to text box methods. type: control.-- you see setText and clear methods as well
-    * we set the text and run it, the answer is:
-    * now we access text box methods
-    * now we access text box methods
-     */
 }
