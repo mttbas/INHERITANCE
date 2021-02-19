@@ -9,7 +9,7 @@ public class UIControl {
 
     public UIControl(boolean isEnabled) {
         this.isEnabled = isEnabled;
-        System.out.println("UIControl");
+        System.out.println("every Control object is an Object and inherits all the members in Object class");
     }
 
 
